@@ -298,7 +298,7 @@ $Xaml = @"
 #-------------------------------------------------------------#
 #Region - Generic Functions
 Function Help () {
-    $ConfluenceURL = "https://www.bbc.co.uk/news"
+    $ConfluenceURL = "https://confluence.enovation.nl/display/IS/UMOweb+Installation+-+main+page"
     Start-Process $ConfluenceURL
     Write-Host "Opening Help URL $ConfluenceURL" -Fore Yellow
 }
@@ -932,6 +932,16 @@ Function ClientSecretChanged () {
 Function AllowedClientIdChanged () {
   $dot5.Source = $pathToOrangeTabIcon
 }
+Function OpenDUOGuide {
+  $DuoURL = "https://confluence.enovation.nl/display/IS/UMO%28web%29+modules+-+Installation+and+Configuration?preview=/83788577/93949365/Duo%202FA%20authentication%20Onboarding%20manual%20v2.2.docx"
+  Start-Process $DuoURL
+  Write-Host "Opening Help URL $DuoURL" -Fore Yellow
+}
+Function OpenPassageIDGuide {
+  $PassageIDURL = "https://confluence.enovation.nl/display/IS/UMO%28web%29+modules+-+Installation+and+Configuration?preview=%2F83788577%2F93949364%2FPassageID+Client+Onboarding+manual+v2.2.docx"
+  Start-Process $PassageIDURL
+  Write-Host "Opening Help URL $PassageIDURL" -Fore Yellow
+}
 Function ApplyTab5 () {
   Write-Host "Applying settings from the 'MFA' Tab" -Fore Yellow
   # Validate the JSON Path before trying to pass data to the JSON
@@ -1170,6 +1180,8 @@ $PassageIDAuthUri.Add_TextChanged({PassageIDAuthUriChanged $this $_})
 $PassageIDValidationRedirectUri.Add_TextChanged({PassageIDValidationRedirectUriChanged $this $_})
 $ClientSecret.Add_TextChanged({ClientSecretChanged $this $_})
 $AllowedClientId.Add_TextChanged({AllowedClientIdChanged $this $_})
+$DUOGuide.Add_Click({OpenDUOGuide $this $_})
+$PassageIDGuide.Add_Click({OpenPassageIDGuide $this $_})
 #Tab6 Execution
 $Install.Add_Click({InstallUmoX $this $_})
 
